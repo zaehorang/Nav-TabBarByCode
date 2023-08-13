@@ -66,8 +66,8 @@
 			children = (
 				26AE04D02A862404007B7922 /* AppDelegate.swift */,
 				26AE04D22A862404007B7922 /* SceneDelegate.swift */,
-				26AE04EE2A88D42B007B7922 /* LoginViewController.swift */,
 				26AE04E42A862445007B7922 /* FriendsViewController.swift */,
+				26AE04EE2A88D42B007B7922 /* LoginViewController.swift */,
 				26AE04E62A862453007B7922 /* ChatsViewController.swift */,
 				26AE04E82A862460007B7922 /* OpenChatViewController.swift */,
 				26AE04EA2A862469007B7922 /* ShoppingViewController.swift */,

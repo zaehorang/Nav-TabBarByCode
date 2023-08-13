@@ -41,35 +41,19 @@ class LoginViewController: UIViewController {
         
     }
     
+    // 버튼 누르면 동작하는 코드 ===> 로그인하면, 디스미스 (탭바가 더 아래에 깔려있음)
     @objc  func loginButtonTapped() {
-        // 탭바컨트롤러의 생성
-        let tabBarVC = UITabBarController()
         
-        // 첫번째 화면은 네비게이션컨트롤러로 만들기 (기본루트뷰 설정)
-        let vc1 = UINavigationController(rootViewController: FriendsViewController())
-        let vc2 = UINavigationController(rootViewController: ChatsViewController())
-        let vc3 = UINavigationController(rootViewController: OpenChatViewController())
-        let vc4 = UINavigationController(rootViewController: ShoppingViewController())
-        let vc5 = UINavigationController(rootViewController: MoreViewController())
+        // 전화면의 isLoggedIn속성에 접근하기 ⭐️
+        if let presentingVC = presentingViewController { // 옵셔널 바인딩
+            let tabBarCon = presentingVC as! UITabBarController   // 탭바에 접근하기
+            let nav = tabBarCon.viewControllers?[0] as! UINavigationController  // 네비게이션바에 접근하기
+            let firstVC = nav.viewControllers[0] as! FriendsViewController  // FriendsVC에 접근하기
+            firstVC.isLoggedIn.toggle()  // 로그인 되었다고 상태 변화시키기 (실제 앱에서 이렇게 구현할 일은 없음)
+        }
         
+        dismiss(animated: true, completion: nil)
         
-        // 탭바로 사용하기 위한 뷰 컨트롤러들 설정
-        tabBarVC.setViewControllers([vc1, vc2, vc3, vc4, vc5], animated: false)
-        tabBarVC.modalPresentationStyle = .fullScreen
-        tabBarVC.tabBar.backgroundColor = .black
-        tabBarVC.tabBar.tintColor = .white
-        
-        // 탭바 이미지 설정 (이미지는 애플이 제공하는 것으로 사용)
-        guard let items = tabBarVC.tabBar.items else { return }
-        
-        items[0].image = UIImage(systemName: "person")
-        items[1].image = UIImage(systemName: "message")
-        items[2].image = UIImage(systemName: "plus.message.fill")
-        items[3].image = UIImage(systemName: "bag")
-        items[4].image = UIImage(systemName: "square.grid.3x3.topright.filled")
-        
-        // 프리젠트로 탭바를 띄우기
-        present(tabBarVC, animated: true, completion: nil)
     }
     
 }
